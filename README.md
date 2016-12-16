@@ -17,7 +17,7 @@ If you have not installed git, npm and note.js, then install them:
 > sudo apt-get install nodejs
 
 Clone the program from github
-> git clone <url>
+> git clone `<url>`
 
 Then install dependencies
 > npm install
@@ -210,20 +210,77 @@ which you can use to clone the "start code" for the demo-page OPENSHIFT
 has created (we will just delete this code).
 
 > git clone ssh://585320382d527143f4000030@securemeanseed-vilstrup.rhcloud.com/~/git/securemeanseed.git/
-git clone ssh://5854030b0c1e6680fd000036@securemeanseed-vilstrup.rhcloud.com/~/git/securemeanseed.git/
 > cd securemeanseed/
 
 Delete all files except (see below)
 > .git
 > .openshift
 
-Open a terminal somewhere on your system and copy/paste the clone information
-given by OPENSHIFT into the terminal and execute the statements.
-Open the folder and delete all files related to the sample node-project created by
-OPENSHIFT as sketched to the right.
 Now copy ALL files/folders from your express project into this folder and do:
 
 > Git add .
 > Git commit -m "initial commit"
 > Git push
+
+#### Pushing to Multiple Remotes
+Here we will see how you can push to two different remote repositories, 
+where of one them could be openshift and the other github.
+
+Because openshift is already added, we just need to add github to the
+remote repository config file (.git/config)
+
+Create a github repository on github and then do:
+
+> git remote add `<shortname> <repository url>`
+
+Where `<repository url>` is equal to the newly created repository on github
+and `<shortname>` is an alias for the remote repository
+
+Here is an example of how it should look:
+
+> git remote add github https://github.com/YourName/applicationName.git
+
+Now you can push your local repository (code) to github:
+> git push github master
+
+If you want to set github as your default repository so you only need to
+write "git push/pull" for version control, then
+
+> git branch --set-upstream-to github/master
+
+Now you can push code to github by writing:
+> git push
+
+And deploy code to openshift by writing:
+> git push origin master
+
+
+#### Some useful git commands
+
+> git remote -v
+
+
+> git remote show origin
+> git remote show github
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

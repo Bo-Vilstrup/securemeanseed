@@ -11,19 +11,32 @@ These technologies is used to develop web applications. From the client and serv
 
 ## How to run the application
 If you have not installed git, npm and note.js, then install them:
-> sudo apt-get update
-> sudo apt-get install git
-> sudo apt-get install npm
-> sudo apt-get install nodejs
+```sh
+    sudo apt-get update
+    sudo apt-get install git
+    sudo apt-get install npm
+    sudo apt-get install nodejs
+```
+
+
 
 Clone the program from github
-> git clone `<url>`
+```sh
+    git clone `<url>`
+```
+
 
 Then install dependencies
-> npm install
+```sh
+    npm install
+```
+
 
 Now you can run the program
-> npm start
+```sh
+    npm start
+```
+
 
 
 You can verify that the application is runne by pointing you browser to this location:
@@ -37,7 +50,7 @@ cloud-env provides a vendor-neutral interface for autoconfiguring your server, a
 It works by checking the system environment (process.env) for known configuration strings (published by OpenShift, Heroku Modulus), normalizing the results into a well-defined list.
 
 locate and open the file:
-> config/config.js
+>   config/config.js
 
 You can change the local port number and ip addess here:
 ```javascript
@@ -47,7 +60,7 @@ You can change the local port number and ip addess here:
 
 
 And you can change the name of the local database here:
-```
+```javascript
     var localDataBase =  '/security_seed_1';
 ```
 
@@ -60,7 +73,7 @@ Open up postman, HttpRequester or another program to handle the testing of the R
 #### Test if it is possible to sign up:
 Post the json object to this address
 http://localhost:3000/signup
-```
+```javascript
 {
 	"userName": "test5",
 	"password": "test5"
@@ -68,7 +81,7 @@ http://localhost:3000/signup
 ```
 
 If Successful you get the following json object back
-```
+```javascript
 {
     "success": true,
     "msg": "Successful created new user."
@@ -79,7 +92,7 @@ If Successful you get the following json object back
 #### Test if it is possible to signin:
 Post the json object to this address
 http://localhost:3000/signin
-```
+```javascript
 {
 	"userName": "test5",
 	"password": "test5"
@@ -87,7 +100,7 @@ http://localhost:3000/signin
 ```
 
 If Successful you get the following json back with a web-token
-```
+```javascript
 {
     "token": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ5b3Vyc2l0ZS5uZXQiLCJpc3MiOiJ5b3VyY29tcGFueUBzb21ld2hlcmUuY29tIiwiaWF0IjoxNDgxMzc3OTM2LjQ5NCwiZXhwIjoxNDgxMzc5MTM2LjQ5NCwic3ViIjoidGVzdDUifQ.OTMqb7YhXtjY7Itj4irYIgm1_BYfWzr7m06QXBRPdTQ"
 }
@@ -134,10 +147,10 @@ locate and open the file:
 
 locate the two pieces of code:
 
-```
-var authenticate = require("./app/routes/authenticate.server.route");
-var user = require('./app/routes/user.server.route.js');
-var routes = require('./app/routes/index');
+```javascript
+    var authenticate = require("./app/routes/authenticate.server.route");
+    var user = require('./app/routes/user.server.route.js');
+    var routes = require('./app/routes/index');
 ```
 First: we have to import the modules (see code snippet above)
 Then: we registrer the modules as middleware (see code snippet below)
@@ -179,17 +192,27 @@ nsp is a command-line tool that checks the Node Security Project
 vulnerability database to determine if your application uses packages 
 with known vulnerabilities. Install it as follows:
 
-> npm install nsp -g
+```sh
+    npm install nsp -g
+```
+
 
 Use this command to submit the npm-shrinkwrap.json / package.json files for validation to nodesecurity.io:
 
-> nsp check
+```sh
+    nsp check
+```
+
 
 Here’s how to use requireSafe to audit your Node modules:
 
-> npm install -g requiresafe
-> cd your-app
-> requiresafe check
+```sh
+    npm install -g requiresafe
+    cd your-app
+    requiresafe check
+```
+
+
 
 
 #### More on securety
@@ -199,8 +222,12 @@ Here’s how to use requireSafe to audit your Node modules:
 ## Deploy
 
 Go to Openshift and create a new gear with:
-> node
-> mongoDB
+```sh
+    node
+    mongoDB
+```
+
+
 
 In this example  we will let OPENSHIFT create the
 infrastructure for a Node application and then commit and push our code 
@@ -209,18 +236,28 @@ When the application has been created, OPENSHIFT provides you with a URL
 which you can use to clone the "start code" for the demo-page OPENSHIFT 
 has created (we will just delete this code).
 
-> git clone ssh://585320382d527143f4000030@securemeanseed-vilstrup.rhcloud.com/~/git/securemeanseed.git/
-> cd securemeanseed/
+```sh
+    git clone ssh://585320382d527143f4000030@securemeanseed-vilstrup.rhcloud.com/~/git/securemeanseed.git/
+    cd securemeanseed/
+```
+
 
 Delete all files except (see below)
-> .git
-> .openshift
+```sh
+    .git
+    .openshift
+```
+
 
 Now copy ALL files/folders from your express project into this folder and do:
 
-> Git add .
-> Git commit -m "initial commit"
-> Git push
+```sh
+    Git add .
+    Git commit -m "initial commit"
+    Git push
+```
+
+
 
 #### Pushing to Multiple Remotes
 Here we will see how you can push to two different remote repositories, 
@@ -231,37 +268,57 @@ remote repository config file (.git/config)
 
 Create a github repository on github and then do:
 
-> git remote add `<shortname> <repository url>`
+```sh
+    git remote add <shortname> <repository url>
+```
+
 
 Where `<repository url>` is equal to the newly created repository on github
 and `<shortname>` is an alias for the remote repository
 
 Here is an example of how it should look:
+```sh
+    git remote add github https://github.com/YourName/applicationName.git
+```
 
-> git remote add github https://github.com/YourName/applicationName.git
 
 Now you can push your local repository (code) to github:
-> git push github master
+```sh
+    git push github master
+```
+
 
 If you want to set github as your default repository so you only need to
 write "git push/pull" for version control, then
 
-> git branch --set-upstream-to github/master
+```sh
+    git branch --set-upstream-to github/master
+```
+
 
 Now you can push code to github by writing:
-> git push
+```sh
+    git push
+```
+
 
 And deploy code to openshift by writing:
-> git push origin master
+```sh
+    git push origin master
+```
+
 
 
 #### Some useful git commands
 
-> git remote -v
+```sh
+    git remote -v
+
+    git remote show origin
+    git remote show github
+```
 
 
-> git remote show origin
-> git remote show github
 
 
 

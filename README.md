@@ -8,6 +8,8 @@ MEAN is a collection of JavaScript-based technologies:
  — Node.js
 These technologies is used to develop web applications. From the client and server sides to databases.
 
+See the seed in action go to the website:
+http://securemeanseed-vilstrup.rhcloud.com
 
 ## How to run the application
 If you have not installed git, npm and note.js, then install them:

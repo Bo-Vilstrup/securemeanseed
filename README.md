@@ -220,7 +220,7 @@ Here’s how to use requireSafe to audit your Node modules:
 #### More on securety
 
 
-
+##### Helmet
 How it works
 
 Helmet is a collection of 11 smaller middleware functions that set HTTP
@@ -246,6 +246,24 @@ middleware functions by default.
 
 You can see more in the documentation.
 
+##### Openshift's certificate and https
+
+Openshifts free certificate, read more on there website:
+https://developers.openshift.com/faq/troubleshooting.html#_how_do_i_redirect_traffic_to_https
+
+
+locate and open the file:
+> server.js
+
+```javascript
+app.use(function (req, res, next) {
+  if (req.headers['x-forwarded-proto'] == 'http') {
+    res.redirect('https://' + req.headers.host + req.path);
+  } else {
+    return next();
+  }
+});
+```
 
 
 

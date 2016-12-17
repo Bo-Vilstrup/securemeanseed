@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var passport = require('passport');
-
+var helmet = require('helmet');
 
 
 var authenticate = require("./app/routes/authenticate.server.route");
@@ -18,6 +18,7 @@ var user = require('./app/routes/user.server.route.js');
 var routes = require('./app/routes/index');
 
 var app = express();
+app.use(helmet());
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'app/views'));
@@ -36,7 +37,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(passport.initialize());
 
 var passport = require("passport");
-//var passportConfig = require("./config/passport");
 var passportConfig = require("./config/strategy/passport");
 passportConfig(passport);
 

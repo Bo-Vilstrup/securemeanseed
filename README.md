@@ -219,6 +219,35 @@ Here’s how to use requireSafe to audit your Node modules:
 
 
 
+How it works
+
+Helmet is a collection of 11 smaller middleware functions that set HTTP
+headers. Running app.use(helmet()) will not include all of these
+middleware functions by default.
+
+```
+    Default?                        Module
+                 contentSecurityPolicy for setting Content Security Policy 	
+    ✓           dnsPrefetchControl controls browser DNS prefetching
+    ✓           frameguard to prevent clickjacking 
+    ✓           hidePoweredBy to remove the X-Powered-By header
+                hpkp for HTTP Public Key Pinning 	
+    ✓           hsts for HTTP Strict Transport Security
+    ✓           ieNoOpen sets X-Download-Options for IE8+
+                noCache to disable client-side caching 	
+    ✓           noSniff to keep clients from sniffing the MIME type
+                 referrerPolicy to hide the Referer header 	
+    ✓           xssFilter adds some small XSS protections
+```
+
+
+
+You can see more in the documentation.
+
+
+
+
+
 ## Deploy
 
 Go to Openshift and create a new gear with:

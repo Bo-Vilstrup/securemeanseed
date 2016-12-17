@@ -27,14 +27,21 @@ app.use(helmet());
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-function redirectSec(req, res, next) {
+// function redirectSec(req, res, next) {
+//   if (req.headers['x-forwarded-proto'] == 'http') {
+//     res.redirect('https://' + req.headers.host + req.path);
+//   } else {
+//     return next();
+//   }
+// }
+
+app.use(function (req, res, next) {
   if (req.headers['x-forwarded-proto'] == 'http') {
     res.redirect('https://' + req.headers.host + req.path);
   } else {
     return next();
   }
-}
-
+});
 
 app.use(logger('dev'));
 app.use(cors());
